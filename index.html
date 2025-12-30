@@ -14,20 +14,32 @@
 <body>
   <div id="loader-screen">
     <div class="loader-content">
+        
+        <div class="voice-visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
         <div class="logo-wrapper">
-            <span class="ai-text">दिल्ली</span><span class="gov-text">SUDARSHAN</span>
-            <div class="scan-line"></div>
+            <div class="brand-box">
+                <span class="hindi-text">दिल्ली</span>
+                <span class="eng-text">SUDARSHAN</span>
+            </div>
+            <div class="tagline-mask">
+                <p class="tagline">BRIDGING VOICE TO VISION</p>
+            </div>
         </div>
         
-        <p class="tagline">YOUR VOICE, YOUR CITY</p>
-        
-        <div class="loading-bar-container">
-            <div class="loading-bar" id="progress"></div>
+        <div class="status-container">
+            <span class="status-icon"><i class="ri-loader-4-line"></i></span>
+            <p class="changing-text">DETECTING CALLER SIGNAL...</p>
         </div>
-        
-        <p class="system-status">Initializing Neural Network...</p>
+
     </div>
-  </div>
+</div>
     <div class="page-watermark">
         <img src="delhi-logo.jpg" alt="Delhi Govt Watermark">
     </div>
@@ -280,3 +292,4 @@
 </body>
 
 </html>
+
