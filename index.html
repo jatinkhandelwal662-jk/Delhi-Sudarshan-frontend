@@ -6,290 +6,270 @@
     <title>Gov-AI | Future Governance</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div id="loader-screen">
     <div class="loader-content">
-        
         <div class="voice-visualizer">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
         </div>
-
         <div class="logo-wrapper">
-            <div class="brand-box">
-                <span class="hindi-text">दिल्ली</span>
-                <span class="eng-text">SUDARSHAN</span>
-            </div>
-            <div class="tagline-mask">
-                <p class="tagline">BRIDGING VOICE TO VISION</p>
-            </div>
+            <span class="hindi-text">दिल्ली</span><span class="eng-text">SUDARSHAN</span>
         </div>
-        
+        <p class="tagline">BRIDGING VOICE TO VISION</p>
         <div class="status-container">
-            <span class="status-icon"><i class="ri-loader-4-line"></i></span>
-            <p class="changing-text">DETECTING CALLER SIGNAL...</p>
-        </div>
-
-    </div>
-</div>
-    <div class="page-watermark">
-        <img src="delhi-logo.jpg" alt="Delhi Govt Watermark">
-    </div>
-
-    <div class="glass-container">
-        
-        <aside class="sidebar">
-            <div class="logo">
-                <div class="logo-icon"><i class="ri-global-line"></i></div>
-                <h2>दिल्ली SUDARSHAN<span class="dot"></span></h2>
-            </div>
-
-            <nav>
-                <button class="nav-btn active" onclick="openTab('dashboard')">
-                    <i class="ri-dashboard-3-line"></i> <span>Mission Control</span>
-                </button>
-                <button class="nav-btn" onclick="openTab('complaints')">
-                    <i class="ri-radar-line"></i> <span>Live Feeds</span>
-                </button>
-                <button class="nav-btn" onclick="openTab('reports')">
-                    <i class="ri-file-chart-line"></i> <span>Department Reports</span>
-                </button>
-                <button class="nav-btn" onclick="openTab('officer')">
-                    <i class="ri-shield-user-line"></i> <span>Officer ID</span>
-                </button>
-            </nav>
-
-            <div class="status-box">
-                <span class="status-dot"></span> System Online
-            </div>
-        </aside>
-
-        <main class="content-area">
-            
-            <div id="dashboard" class="view active-view">
-                <header class="glass-header">
-                    <h1>City Monitor <span class="badge-live">LIVE</span></h1>
-                    <p class="subtitle">Real-time AI surveillance of public complaints.</p>
-                </header>
-
-                <div class="stats-row">
-                    <div class="stat-card">
-                        <h3>Total Reports</h3>
-                        <h1>1,284</h1>
-                        <div class="progress-bar"><div class="fill" style="width: 80%"></div></div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Resolved</h3>
-                        <h1 class="success">942</h1>
-                        <div class="progress-bar"><div class="fill success-bg" style="width: 60%"></div></div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Pending</h3>
-                        <h1 class="danger">12</h1>
-                        <div class="progress-bar"><div class="fill danger-bg" style="width: 20%"></div></div>
-                    </div>
-                </div>
-
-                <div class="glass-panel">
-                    <h3>Complaint Frequency</h3>
-                    <canvas id="mainChart"></canvas>
-                </div>
-            </div>
-
-            <div id="complaints" class="view">
-                <header class="glass-header">
-                    <h1>Complaint's Record</h1>
-                    <p class="subtitle">Voice-to-Text Transmissions from Citizens.</p>
-                </header>
-                
-                <div class="glass-panel">
-                    <table id="complaintsTable">
-                        <thead>
-                            <tr>
-                                <th>Signal ID</th>
-                                <th>Type</th>
-                                <th>Location</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableBody">
-                            </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div id="reports" class="view">
-    <header class="glass-header">
-        <h1>Ministry Performance</h1>
-        <p class="subtitle">Efficiency analysis across government departments.</p>
-    </header>
-
-    <div class="stats-row">
-        <div class="stat-card highlight-card">
-            <div class="badge-icon"><i class="ri-trophy-line"></i></div>
-            <h3>Top Performer</h3>
-            <h1 id="best-dept-name">MCD (East)</h1>
-            <p class="stat-sub">98% Resolution Rate</p>
-            <div class="progress-bar"><div class="fill success-bg" style="width: 98%"></div></div>
-        </div>
-
-        <div class="stat-card">
-            <h3>Fastest Action</h3>
-            <h1 id="fastest-dept-name">BSES Power</h1>
-            <p class="stat-sub">Avg Time: <span class="highlight-text">1.2 Hrs</span></p>
-            <div class="progress-bar"><div class="fill" style="width: 90%; background: #06b6d4;"></div></div>
-        </div>
-
-        <div class="stat-card">
-            <h3>Highest Load</h3>
-            <h1 id="busy-dept-name">PWD Delhi</h1>
-            <p class="stat-sub">450+ Active Tickets</p>
-            <div class="progress-bar"><div class="fill danger-bg" style="width: 85%"></div></div>
-        </div>
-    </div>
-
-    <div class="glass-panel chart-panel">
-        <div class="panel-header">
-            <h3>Department Workload (Received vs. Solved)</h3>
-            <select class="glass-select">
-                <option>This Month</option>
-                <option>Last Month</option>
-            </select>
-        </div>
-        <div class="chart-wrapper">
-            <canvas id="deptChart"></canvas>
-        </div>
-      </div>
-    </div>
-
-            <div id="officer" class="view">
-                <div class="profile-container">
-                    
-                    <div class="glass-card-large">
-                        
-                        <div class="profile-header">
-                            <div class="avatar-wrapper">
-                                <img src="officer.jpg" alt="Officer" class="avatar-img">
-                                <div class="verify-badge"><i class="ri-checkbox-circle-fill"></i></div>
-                            </div>
-                            <div class="header-text">
-                                <h1>Officer Dogesh</h1>
-                                <p class="designation">Zone Commander • Grade A</p>
-                            </div>
-                        </div>
-
-                        <div class="divider"></div>
-
-                        <div class="info-grid">
-                            <div class="info-box">
-                                <div class="icon-box"><i class="ri-government-line"></i></div>
-                                <div>
-                                    <span class="label">Department</span>
-                                    <p class="value">Public Works (PWD)</p>
-                                </div>
-                            </div>
-
-                            <div class="info-box">
-                                <div class="icon-box"><i class="ri-id-card-line"></i></div>
-                                <div>
-                                    <span class="label">Official ID</span>
-                                    <p class="value">DL-09-X45</p>
-                                </div>
-                            </div>
-
-                            <div class="info-box">
-                                <div class="icon-box"><i class="ri-map-pin-user-line"></i></div>
-                                <div>
-                                    <span class="label">Region</span>
-                                    <p class="value">South Delhi</p>
-                                </div>
-                            </div>
-
-                            <div class="info-box">
-                                <div class="icon-box"><i class="ri-smartphone-line"></i></div>
-                                <div>
-                                    <span class="label">Contact</span>
-                                    <p class="value">+91 9877757890</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <div id="analyzeModal" class="modal-overlay">
-    <div class="glass-modal-box">
-        <button class="close-btn" onclick="closeAnalyzeModal()">&times;</button>
-        
-        <div class="modal-header">
-            <h2>Complaint Analysis</h2>
-            <span class="status-pill" id="m-status">Pending</span>
-        </div>
-
-        <div class="modal-body">
-            <div class="modal-img-container">
-                <img id="m-photo" src="" alt="Evidence">
-                <div class="img-badge">Evidence Photo</div>
-            </div>
-
-            <div class="modal-details">
-                
-                <div class="detail-group">
-                    <label>Citizen Voice Summary</label>
-                    <div class="desc-box">
-                        <p id="m-desc">User reported water logging...</p>
-                    </div>
-                </div>
-
-                <div class="detail-grid">
-                    <div class="detail-item">
-                        <label>Complaint Type</label>
-                        <h3 id="m-type">Water Leakage</h3>
-                    </div>
-                    <div class="detail-item">
-                        <label>Region</label>
-                        <p id="m-region">South Delhi</p>
-                    </div>
-                </div>
-
-                <div class="detail-grid">
-                    <div class="detail-item">
-                        <label>Mobile No.</label>
-                        <p id="m-phone">+91 98*** *****</p>
-                    </div>
-                    <div class="detail-item">
-                        <label>Assigned Dept</label>
-                        <p id="m-dept" style="color:var(--primary); font-weight:700;">DJB</p>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="modal-action-btn primary" onclick="updateStatus('Approved')">
-                        <i class="ri-check-double-line"></i> Approve & Assign
-                    </button>
-                    <button class="modal-action-btn danger" onclick="updateStatus('Rejected')">
-                        <i class="ri-spam-line"></i> Reject
-                    </button>
-                </div>
-
-            </div>
+            <p class="changing-text">INITIALIZING SYSTEM...</p>
         </div>
     </div>
   </div>
+
+  <div class="page-watermark">
+      <img src="delhi-logo.jpg" alt="Delhi Govt Watermark">
+  </div>
+
+  <div class="glass-container">
       
+      <aside class="sidebar">
+          <div class="logo">
+              <div class="logo-icon"><i class="ri-global-line"></i></div>
+              <h2>दिल्ली SUDARSHAN<span class="dot"></span></h2>
+          </div>
+
+          <nav>
+              <button class="nav-btn active" onclick="openTab('dashboard')">
+                  <i class="ri-dashboard-3-line"></i> <span>Mission Control</span>
+              </button>
+              <button class="nav-btn" onclick="openTab('complaints')">
+                  <i class="ri-radar-line"></i> <span>Live Feeds</span>
+              </button>
+              <button class="nav-btn" onclick="openTab('reports')">
+                  <i class="ri-file-chart-line"></i> <span>Department Reports</span>
+              </button>
+              <button class="nav-btn" onclick="openTab('officer')">
+                  <i class="ri-shield-user-line"></i> <span>Officer ID</span>
+              </button>
+          </nav>
+
+          <div class="status-box">
+              <span class="status-dot"></span> System Online
+          </div>
+      </aside>
+
+      <main class="content-area">
+          
+          <div id="dashboard" class="view active-view">
+              <header class="glass-header">
+                  <h1>City Monitor <span class="badge-live">LIVE</span></h1>
+                  <p class="subtitle">Real-time AI surveillance of public complaints.</p>
+              </header>
+
+              <div class="stats-row">
+                  <div class="stat-card">
+                      <h3>Total Reports</h3>
+                      <h1>1,284</h1>
+                      <div class="progress-bar"><div class="fill" style="width: 80%"></div></div>
+                  </div>
+                  <div class="stat-card">
+                      <h3>Resolved</h3>
+                      <h1 class="success">942</h1>
+                      <div class="progress-bar"><div class="fill success-bg" style="width: 60%"></div></div>
+                  </div>
+                  <div class="stat-card">
+                      <h3>Pending</h3>
+                      <h1 class="danger">12</h1>
+                      <div class="progress-bar"><div class="fill danger-bg" style="width: 20%"></div></div>
+                  </div>
+              </div>
+              <div class="glass-panel">
+                  <h3>Complaint Frequency</h3>
+                  <div class="chart-wrapper" style="height: 360px;">
+                      <canvas id="mainChart"></canvas>
+                  </div>
+              </div>
+          </div>
+
+          <div id="complaints" class="view">
+              <header class="glass-header">
+                  <h1>Complaint's Record</h1>
+                  <p class="subtitle">Voice-to-Text Transmissions from Citizens.</p>
+              </header>
+              
+              <div class="glass-panel no-padding-panel">
+                  <div class="table-wrapper">
+                      <table id="complaintsTable">
+                          <thead>
+                              <tr>
+                                   <th>Signal ID</th>
+                                   <th>Type</th>
+                                   <th>Location</th>
+                                   <th>Status</th>
+                                   <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody id="tableBody">
+                              </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div> <div id="reports" class="view">
+              <header class="glass-header">
+                  <h1>Ministry Performance</h1>
+                  <p class="subtitle">Efficiency analysis across government departments.</p>
+              </header>
+
+              <div class="stats-row">
+                  <div class="stat-card highlight-card">
+                      <div class="badge-icon"><i class="ri-trophy-line"></i></div>
+                      <h3>Top Performer</h3>
+                      <h1 id="best-dept-name">MCD (South)</h1>
+                      <p class="stat-sub">98% Resolution Rate</p>
+                      <div class="progress-bar"><div class="fill success-bg" style="width: 98%"></div></div>
+                  </div>
+
+                  <div class="stat-card">
+                      <h3>Fastest Action</h3>
+                      <h1 id="fastest-dept-name">BSES Rajdhani Power</h1>
+                      <p class="stat-sub">Avg Time: <span class="highlight-text">1.2 Hrs</span></p>
+                      <div class="progress-bar"><div class="fill" style="width: 90%; background: #06b6d4;"></div></div>
+                  </div>
+
+                  <div class="stat-card">
+                      <h3>Highest Load</h3>
+                      <h1 id="busy-dept-name">PWD</h1>
+                      <p class="stat-sub">450+ Active Tickets</p>
+                      <div class="progress-bar"><div class="fill danger-bg" style="width: 85%"></div></div>
+                  </div>
+              </div>
+
+              <div class="glass-panel chart-panel">
+                  <div class="panel-header">
+                      <h3>Department Workload</h3>
+                  </div>
+                  <div class="chart-wrapper">
+                      <canvas id="deptChart"></canvas>
+                  </div>
+              </div>
+          </div>
+
+          <div id="officer" class="view">
+              <div class="profile-container">
+                  <div class="glass-card-large">
+                      <div class="profile-header">
+                          <div class="avatar-wrapper">
+                              <img src="officer.jpg" alt="Officer" class="avatar-img">
+                              <div class="verify-badge"><i class="ri-checkbox-circle-fill"></i></div>
+                          </div>
+                          <div class="header-text">
+                              <h1>MS Dhoni</h1>
+                              <p class="designation">Public Nodal Officer • Grade A</p>
+                          </div>
+                      </div>
+                      <div class="divider"></div>
+                      <div class="info-grid">
+                          <div class="info-box">
+                              <div class="icon-box"><i class="ri-government-line"></i></div>
+                              <div><span class="label">Department</span><p class="value">Public Grievances Commission</p></div>
+                          </div>
+                          <div class="info-box">
+                              <div class="icon-box"><i class="fa-solid fa-id-card"></i></div>
+                              <div><span class="label">Official ID</span><p class="value">DL-09-X45</p></div>
+                          </div>
+                          <div class="info-box">
+                              <div class="icon-box"><i class="ri-map-pin-user-line"></i></div>
+                              <div><span class="label">Region</span><p class="value">South Delhi</p></div>
+                          </div>
+                          <div class="info-box">
+                              <div class="icon-box"><i class="ri-smartphone-line"></i></div>
+                              <div><span class="label">Contact</span><p class="value">+91 9877757890</p></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </main>
+
+      <div id="analyzeModal" class="modal-overlay">
+          <div class="glass-modal-box">
+              <button class="close-btn" onclick="closeAnalyzeModal()">&times;</button>
+              
+              <div class="modal-header">
+                  <h2>Complaint Analysis</h2>
+                  <span class="status-pill" id="m-status">Pending</span>
+              </div>
+
+              <div class="modal-body">
+                  <div class="modal-img-container">
+                      <img id="m-photo" src="" alt="Evidence">
+                      <div class="img-badge">Evidence Photo</div>
+                  </div>
+
+                  <div class="modal-details">
+                      <div class="detail-group">
+                          <label>Citizen Voice Summary</label>
+                          <div class="desc-box">
+                              <p id="m-desc">...</p>
+                          </div>
+                      </div>
+
+                      <div class="detail-grid">
+                          <div class="detail-item">
+                              <label>Complaint Type</label>
+                              <h3 id="m-type">...</h3>
+                          </div>
+                          <div class="detail-item">
+                              <label>Region</label>
+                              <p id="m-region">...</p>
+                          </div>
+                      </div>
+
+                      <div class="detail-grid">
+                          <div class="detail-item">
+                              <label>Mobile No.</label>
+                              <p id="m-phone">...</p>
+                          </div>
+                          <div class="detail-item">
+                              <label>Assigned Dept</label>
+                              <p id="m-dept" style="color:var(--primary); font-weight:700;">...</p>
+                          </div>
+                      </div>
+
+                      <div class="action-buttons">
+                          <button class="modal-action-btn primary">
+                              <i class="ri-check-double-line"></i> Approve
+                          </button>
+                          <button class="modal-action-btn danger" onclick="updateStatus('Rejected')">
+                              <i class="ri-spam-line"></i> Reject
+                          </button>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+    <footer class="gov-footer">
+    <div class="footer-left">
+        <span>&copy; 2025 <strong>Government of NCT of Delhi</strong></span>
+        <span class="divider">|</span>
+        <span>Developed by Team Sudarshan</span>
+    </div>
+
+    <div class="footer-center">
+        <span class="security-warning"><i class="ri-lock-2-fill"></i> CONFIDENTIAL: FOR OFFICIAL USE ONLY</span>
+    </div>
+
+    <div class="footer-right">
+        <span>System v2.1.4 (Build 890)</span>
+        <span class="divider">|</span>
+        <a href="#" class="support-link"><i class="ri-customer-service-2-line"></i> IT Helpdesk</a>
+    </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
     <script src="script.js"></script>
 </body>
-
 </html>
-
