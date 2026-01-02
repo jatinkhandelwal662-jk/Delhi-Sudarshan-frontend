@@ -332,3 +332,156 @@ td:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px;
     .info-grid { grid-template-columns: 1fr; }
     .glass-card-large { padding: 30px; }
 }
+
+/* ================================= */
+/* NEW LOGO STYLING                  */
+/* ================================= */
+
+.main-logo-img {
+    height: 55px; /* Matches the previous icon+text height */
+    width: auto;  /* Maintains aspect ratio */
+    max-width: 100%; /* Prevents it from overflowing sidebar */
+    object-fit: contain;
+    border-radius: 8px; /* Slight curve to look professional */
+    display: block;
+    padding-right: 7px;
+}
+
+/* Update .logo container to remove old flex gaps if necessary */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns logo to left */
+    margin-bottom: 40px;
+    gap: 0; /* Remove gap since it's now just one image */
+}
+
+/* ================================= */
+/* NOTIFICATION CENTER STYLES        */
+/* ================================= */
+
+/* 1. Floating Bell Button */
+.notif-toggle-btn {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    z-index: 1100; /* Above everything */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--text);
+    transition: 0.3s;
+}
+
+.notif-toggle-btn:hover {
+    transform: rotate(15deg) scale(1.1);
+    color: var(--primary);
+}
+
+/* Red Badge Counter */
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--danger);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* 2. Sliding Panel */
+.notif-panel {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hidden by default */
+    width: 350px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255,255,255,0.6);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    z-index: 1050; /* Below Bell, Above Content */
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.notif-panel.active {
+    right: 0; /* Slide in */
+}
+
+/* Panel Header */
+.notif-header {
+    padding: 25px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.5);
+}
+
+.notif-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+.close-notif { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-muted); }
+
+/* Notification List */
+.notif-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Individual Notification Card */
+.notif-card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary); /* Default Blue */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    animation: slideInRight 0.4s ease forwards;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Solved Type */
+.notif-card.solved { border-left-color: var(--success); }
+.notif-card.alert { border-left-color: var(--danger); }
+
+.n-top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.n-id { font-family: monospace; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); }
+.n-time { font-size: 0.7rem; color: #94a3b8; }
+
+.n-msg { font-size: 0.9rem; color: var(--text); font-weight: 500; line-height: 1.4; }
+.n-dept { font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-top: 5px; display: block; }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .notif-panel { width: 100%; right: -100%; }
+}
