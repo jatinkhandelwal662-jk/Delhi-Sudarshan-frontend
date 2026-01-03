@@ -402,9 +402,9 @@ function initMainChart() {
     window.myMainChart = new Chart(ctx.getContext('2d'), {
         type: 'line',
         data: {
-            labels: ['1st', '5th', '10th', '15th', '20th', '25th', '30th'],
-            datasets: [{ label: 'Received', data: [120, 150, 180, 210, 190, 240, 280], borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.1)', borderWidth: 3, tension: 0.4, fill: true },
-                       { label: 'Solved', data: [100, 130, 160, 200, 180, 220, 260], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', borderWidth: 3, tension: 0.4, fill: true }]
+            labels: ['JAN', 'MAR', 'JUN', 'AUG', 'SEPT', 'NOV', 'DEC'],
+            datasets: [{ label: 'Received', data: [12000, 15560, 18083, 21043, 19023, 24087, 28021], borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.1)', borderWidth: 3, tension: 0.4, fill: true },
+                       { label: 'Solved', data: [10000, 13078, 16008, 20099, 18008, 22056, 26000], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', borderWidth: 3, tension: 0.4, fill: true }]
         },
         options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false }, title: { display: true, text: 'Date of Month', font: { weight: 'bold' } } }, y: { beginAtZero: true, title: { display: true, text: 'Number of Complaints', font: { weight: 'bold' } } } } }
     });
@@ -418,8 +418,8 @@ function initDeptChart() {
         type: 'bar',
         data: {
             labels: ['PWD', 'Delhi Jal Board', 'BSES Rajdhani', 'MCD (South)'],
-            datasets: [{ label: 'Received', data: [450, 320, 210, 380], backgroundColor: '#2563eb', borderRadius: 6 },
-                       { label: 'Resolved', data: [300, 280, 200, 370], backgroundColor: '#10b981', borderRadius: 6 }]
+            datasets: [{ label: 'Received', data: [30050, 20765, 21021, 28987], backgroundColor: '#2563eb', borderRadius: 6 },
+                       { label: 'Resolved', data: [20654, 15098, 18043, 28407], backgroundColor: '#10b981', borderRadius: 6 }]
         },
         options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1000, easing: 'easeOutQuart' }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } } }
     });
@@ -490,3 +490,4 @@ function addNewNotification(id, msg, dept, time, type) {
 
 // Initial Render
 renderNotifications();
+
