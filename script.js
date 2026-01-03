@@ -6,7 +6,7 @@ let currentItemIndex = null;
 // --- 1. DATASETS ---
 let data = [
     { 
-        id: "SIG-9021", type: "Water Leakage", loc: "Dwarka Sec-10", status: "Pending", date: "2025-01-01",
+        id: "SIG-9021", type: "Water Leakage", loc: "Defence Colony", status: "Pending", date: "2025-01-01",
         phone: "+91 98765 43210", dept: "Delhi Jal Board (DJB)", 
         img: "https://static.mywebsites360.com/abd167044a4d49a3823ff1bbbce34934/i/be984f7bd6d143aab1bee92b1f665c40/1/4SoifmQp45JMgBnHm9g4L/Leaking.jpg",
         desc: "Huge water leakage near the metro station gate 2. It has been flowing for 4 hours and causing traffic jam."
@@ -18,12 +18,12 @@ let data = [
         desc: "Street lights in Block C are not working for the last 3 nights. It is very dark and unsafe for women."
     },
     { 
-        id: "SIG-7721", type: "Deep Pothole", loc: "Ring Road", status: "Pending", date: "2025-11-20", // Overdue Trigger
+        id: "SIG-7721", type: "Deep Pothole", loc: "Okhala NSIC", status: "Pending", date: "2025-11-20", // Overdue Trigger
         phone: "+91 88776 65544", dept: "PWD Delhi", 
         img: "", // Missing Photo Trigger
         desc: "A very deep pothole in the middle of the left lane. Two bikes slipped today morning. Urgent repair needed."
     },
-    {   id:"SIG-7144",type:"Illegal Garbage Dump", loc:"Dwarka Sector 3",status:"Pending", date: "2025-12-28",
+    {   id:"SIG-7144",type:"Illegal Garbage Dump", loc:"Faridabad",status:"Pending", date: "2025-12-28",
         phone:"+91 98758 76412", dept:"MCD",
         img:"https://images.unsplash.com/photo-1673203300654-d973e8944910?q=80&w=1170&auto=format&fit=crop",
         desc:"Illegal garbage dumping in dwarka sector 3 causing problem major problems to nearby residents."
@@ -31,13 +31,13 @@ let data = [
     {   id:"SIG-5632", type:"Damaged Road Dividers", loc:"Janakpuri", status:"Solved", date: "2025-09-10",
         phone:"+91 98563 45442",dept:"PWD Delhi", img: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=400", desc:"Road divider is damaged."
     },
-    {   id: "SIG-2904",type: "Contaminated Water",loc: "Seelampur",status: "Solved", date: "2025-08-05",
+    {   id: "SIG-2904",type: "Contaminated Water",loc: "Govindpuri",status: "Solved", date: "2025-08-05",
         phone: "+91 98223 34456",dept: "Delhi Jal Board", img: "", desc: "Tap water is muddy."
     },
-    {   id: "SIG-5102",type: "Power Fluctuations",loc: "Rohini Sec 5",status: "Pending", date: "2025-01-10",
+    {   id: "SIG-5102",type: "Power Fluctuations",loc: "CR Park Pocket-4",status: "Pending", date: "2025-01-10",
         phone: "+91 98456 22337",dept: "BSES Rajdhani", img:"https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=400", desc: "Voltage is fluctuating."
     },
-    {  id: "SIG-3101",type: "Garbage Not Collected",loc: "Daryaganj",status: "Pending", date: "2025-12-29",
+    {  id: "SIG-3101",type: "Garbage Not Collected",loc: "CR Parlk Central Park",status: "Pending", date: "2025-12-29",
        phone: "+91 97654 25678",dept: "MCD", img:"", desc: "Garbage overflowing."
     },
     {  id: "SIG-4134",type: "Unsafe Barricades",loc: "ITO",status: "Solved", date: "2025-07-20",
@@ -45,6 +45,186 @@ let data = [
     },
     {  id: "SIG-1121",type: "Water Supply Timing",loc: "Saket",status: "Pending", date: "2025-02-15",
        phone: "+91 98134 52123",dept: "DJB", img: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=400", desc: "Water supply timings irregular."
+    },
+    { 
+        id: "SIG-9101", type: "Garbage Overflow", loc: "Lajpat Nagar II", status: "Pending", date: "2026-01-01",
+        phone: "+91 98991 12233", dept: "MCD", 
+        img: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=400", 
+        desc: "Dustbin near Central Market is overflowing onto the street."
+    },
+    { 
+        id: "SIG-9102", type: "Dead Animal", loc: "Kalkaji Extension", status: "Solved", date: "2025-12-20",
+        phone: "+91 99882 23344", dept: "MCD", 
+        img: "", 
+        desc: "Dead stray dog causing foul smell near Block K park."
+    },
+    { 
+        id: "SIG-9103", type: "Construction Debris", loc: "Greater Kailash I", status: "Pending", date: "2025-12-30",
+        phone: "+91 88771 12233", dept: "MCD", 
+        img: "https://images.unsplash.com/photo-1590486803833-1c5c0c9e05c5?w=400", 
+        desc: "Illegal dumping of construction waste (malba) on the sidewalk."
+    },
+    { 
+        id: "SIG-9104", type: "Blocked Drain", loc: "South Ext Part 1", status: "Pending", date: "2025-12-28",
+        phone: "+91 91234 56789", dept: "MCD", 
+        img: "https://images.unsplash.com/photo-1621947081720-86970823b77a?w=400", 
+        desc: "Small roadside drain blocked by plastic, water stagnating."
+    },
+    { 
+        id: "SIG-9105", type: "Unswept Roads", loc: "Malviya Nagar", status: "Solved", date: "2025-11-15",
+        phone: "+91 99112 23344", dept: "MCD", 
+        img: "", 
+        desc: "Safai karamchari has not visited Block B for 3 days."
+    },
+    { 
+        id: "SIG-9106", type: "Public Toilet Dirty", loc: "Nehru Place", status: "Pending", date: "2026-01-02",
+        phone: "+91 98110 09988", dept: "MCD", 
+        img: "https://images.unsplash.com/photo-1584627404289-4e26214300e8?w=400", 
+        desc: "Public toilet near electronics market is unusable and dirty."
+    },
+    { 
+        id: "SIG-9107", type: "Illegal Hawker", loc: "Sarojini Nagar", status: "Pending", date: "2025-12-25",
+        phone: "+91 77665 54433", dept: "MCD", 
+        img: "", 
+        desc: "Hawkers blocking the entry to the metro station."
+    },
+    { 
+        id: "SIG-9108", type: "Park Maintenance", loc: "Defence Colony", status: "Solved", date: "2025-10-10",
+        phone: "+91 99881 12299", dept: "MCD", 
+        img: "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?w=400", 
+        desc: "Broken benches and overgrown grass in the C-Block park."
+    },
+
+    // --- PWD (Roads & Infrastructure) ---
+    { 
+        id: "SIG-9201", type: "Deep Pothole", loc: "Outer Ring Road, Chirag Delhi", status: "Pending", date: "2025-12-29",
+        phone: "+91 98765 11223", dept: "PWD Delhi", 
+        img: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?w=400", 
+        desc: "Massive pothole on the flyover descent, dangerous for bikers."
+    },
+    { 
+        id: "SIG-9202", type: "Broken Footpath", loc: "Hauz Khas", status: "Pending", date: "2025-12-31",
+        phone: "+91 98100 22334", dept: "PWD Delhi", 
+        img: "https://images.unsplash.com/photo-1596525166418-4e369f064858?w=400", 
+        desc: "Tiles missing on the footpath near the market entrance."
+    },
+    { 
+        id: "SIG-9203", type: "Fallen Signboard", loc: "Mehrauli-Badarpur Road", status: "Solved", date: "2025-11-25",
+        phone: "+91 99551 12233", dept: "PWD Delhi", 
+        img: "", 
+        desc: "Direction signboard fell down due to wind."
+    },
+    { 
+        id: "SIG-9204", type: "Waterlogging", loc: "Pul Prahladpur Underpass", status: "Pending", date: "2026-01-01",
+        phone: "+91 88223 34455", dept: "PWD Delhi", 
+        img: "https://images.unsplash.com/photo-1569254994521-dd685822e519?w=400", 
+        desc: "Underpass starting to flood after light rain."
+    },
+    { 
+        id: "SIG-9205", type: "Damaged Divider", loc: "August Kranti Marg", status: "Solved", date: "2025-09-15",
+        phone: "+91 97112 23344", dept: "PWD Delhi", 
+        img: "https://images.unsplash.com/photo-1625244675765-a89270da6728?w=400", 
+        desc: "Car hit the divider, stones scattered on road."
+    },
+    { 
+        id: "SIG-9206", type: "Speed Breaker Issue", loc: "Vasant Vihar", status: "Pending", date: "2025-12-27",
+        phone: "+91 98115 56677", dept: "PWD Delhi", 
+        img: "", 
+        desc: "Unmarked speed breaker causing vehicles to jump."
+    },
+    { 
+        id: "SIG-9207", type: "Manhole Cover Missing", loc: "Saket", status: "Pending", date: "2026-01-02",
+        phone: "+91 99900 11223", dept: "PWD Delhi", 
+        img: "https://images.unsplash.com/photo-1610444565860-a292d3429399?w=400", 
+        desc: "Open manhole in front of PVR Anupam. Very risky."
+    },
+
+    // --- BSES Rajdhani (Electricity) ---
+    { 
+        id: "SIG-9301", type: "Street Light Off", loc: "Green Park", status: "Pending", date: "2025-12-28",
+        phone: "+91 98188 77665", dept: "BSES Rajdhani", 
+        img: "https://images.unsplash.com/photo-1566491450091-7e49fb44f2d2?w=400", 
+        desc: "Entire row of street lights off in R-Block."
+    },
+    { 
+        id: "SIG-9302", type: "Transformer Sparking", loc: "Okhla Phase 3", status: "Pending", date: "2026-01-01",
+        phone: "+91 98711 22334", dept: "BSES Rajdhani", 
+        img: "https://images.unsplash.com/photo-1497435334941-8c699ee63e03?w=400", 
+        desc: "Loud sounds and sparks coming from the roadside transformer."
+    },
+    { 
+        id: "SIG-9303", type: "Power Cut", loc: "Chhatarpur", status: "Solved", date: "2025-12-15",
+        phone: "+91 99110 02233", dept: "BSES Rajdhani", 
+        img: "", 
+        desc: "No electricity for 6 hours in the Enclave area."
+    },
+    { 
+        id: "SIG-9304", type: "Hanging Wires", loc: "Kotla Mubarakpur", status: "Pending", date: "2025-12-26",
+        phone: "+91 98112 23344", dept: "BSES Rajdhani", 
+        img: "https://images.unsplash.com/photo-1544724569-5f546fd6dd2d?w=400", 
+        desc: "Loose electrical wires hanging very low over the street."
+    },
+    { 
+        id: "SIG-9305", type: "Meter Box Open", loc: "Sarita Vihar", status: "Pending", date: "2025-12-30",
+        phone: "+91 88001 12233", dept: "BSES Rajdhani", 
+        img: "https://images.unsplash.com/photo-1555581292-127f311c977b?w=400", 
+        desc: "Main meter box door is broken and accessible to kids."
+    },
+    { 
+        id: "SIG-9306", type: "Voltage Fluctuation", loc: "Khanpur", status: "Solved", date: "2025-08-20",
+        phone: "+91 99887 76655", dept: "BSES Rajdhani", 
+        img: "", 
+        desc: "High voltage surge damaged home appliances."
+    },
+    { 
+        id: "SIG-9307", type: "Pole Bent", loc: "Sangam Vihar", status: "Pending", date: "2026-01-02",
+        phone: "+91 98765 43211", dept: "BSES Rajdhani", 
+        img: "https://images.unsplash.com/photo-1498625944586-531e84a224f8?w=400", 
+        desc: "Electric pole bent after being hit by a truck."
+    },
+
+    // --- DJB (Water & Sewerage) ---
+    { 
+        id: "SIG-9401", type: "Pipeline Burst", loc: "Vasant Kunj Sector A", status: "Pending", date: "2026-01-01",
+        phone: "+91 98101 23456", dept: "Delhi Jal Board (DJB)", 
+        img: "https://images.unsplash.com/photo-1585664812328-da6248e3e46e?w=400", 
+        desc: "Main supply pipe burst, gallons of water wasting."
+    },
+    { 
+        id: "SIG-9402", type: "Dirty Water", loc: "Govindpuri", status: "Solved", date: "2025-12-10",
+        phone: "+91 99552 23344", dept: "Delhi Jal Board (DJB)", 
+        img: "https://images.unsplash.com/photo-1574706306550-13f5080e227d?w=400", 
+        desc: "Tap water is black and smelling like sewage."
+    },
+    { 
+        id: "SIG-9403", type: "No Water Supply", loc: "Safdarjung Enclave", status: "Pending", date: "2026-01-02",
+        phone: "+91 98113 34455", dept: "Delhi Jal Board (DJB)", 
+        img: "", 
+        desc: "No water supply in Block B for the last 48 hours."
+    },
+    { 
+        id: "SIG-9404", type: "Sewer Overflow", loc: "Bhogal", status: "Pending", date: "2025-12-29",
+        phone: "+91 88002 23344", dept: "Delhi Jal Board (DJB)", 
+        img: "https://images.unsplash.com/photo-1621947081720-86970823b77a?w=400", 
+        desc: "Sewer water backflowing into ground floor houses."
+    },
+    { 
+        id: "SIG-9405", type: "Tanker Request", loc: "Neb Sarai", status: "Solved", date: "2025-06-15",
+        phone: "+91 99114 45566", dept: "Delhi Jal Board (DJB)", 
+        img: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=400", 
+        desc: "Urgent need for water tanker, borewell dried up."
+    },
+    { 
+        id: "SIG-9406", type: "Leakage at Meter", loc: "Jangpura", status: "Pending", date: "2025-12-27",
+        phone: "+91 98712 23344", dept: "Delhi Jal Board (DJB)", 
+        img: "https://images.unsplash.com/photo-1625126596350-c6c747754f73?w=400", 
+        desc: "Water leaking from the connection point near meter."
+    },
+    { 
+        id: "SIG-9407", type: "Low Pressure", loc: "East of Kailash", status: "Pending", date: "2025-12-31",
+        phone: "+91 99998 87766", dept: "Delhi Jal Board (DJB)", 
+        img: "", 
+        desc: "Water pressure is too low to reach overhead tanks."
     }
 ];
 
