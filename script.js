@@ -1,4 +1,4 @@
-// script.js - Gov-AI Dashboard Logic
+// script.js
 
 // GLOBAL VARIABLE TO TRACK OPEN COMPLAINT
 let currentItemIndex = null;
@@ -94,8 +94,6 @@ let data = [
         img: "Complaint Photoes/SIG-9108.webp", 
         desc: "Broken benches and overgrown grass in the C-Block park."
     },
-
-    // --- PWD (Roads & Infrastructure) ---
     { 
         id: "SIG-9201", type: "Deep Pothole", loc: "Outer Ring Road, Chirag Delhi", status: "Pending", date: "2025-12-29",
         phone: "+91 98765 11223", dept: "PWD Delhi", 
@@ -138,8 +136,6 @@ let data = [
         img: "Complaint Photoes/SIG-9207.webp", 
         desc: "Open manhole in front of PVR Anupam. Very risky."
     },
-
-    // --- BSES Rajdhani (Electricity) ---
     { 
         id: "SIG-9301", type: "Street Light Off", loc: "Green Park", status: "Pending", date: "2025-12-28",
         phone: "+91 98188 77665", dept: "BSES Rajdhani", 
@@ -182,8 +178,6 @@ let data = [
         img: "Complaint Photoes/SIG-9307.jpg", 
         desc: "Electric pole bent after being hit by a truck."
     },
-
-    // --- DJB (Water & Sewerage) ---
     { 
         id: "SIG-9401", type: "Pipeline Burst", loc: "Vasant Kunj Sector A", status: "Pending", date: "2026-01-01",
         phone: "+91 98101 23456", dept: "Delhi Jal Board (DJB)", 
@@ -244,6 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => { removeLoader(); }, 4500); 
     renderTable(); 
     initMainChart();
+    initDeptChart(); // Added explicit call if needed, safe if function exists
 });
 
 function removeLoader() {
@@ -270,7 +265,8 @@ function checkOverdue() {
 
 // --- 4. FILTER & RENDER ---
 function filterTable() {
-    const filterValue = document.getElementById('statusFilter').value;
+    const filterElem = document.getElementById('statusFilter');
+    const filterValue = filterElem ? filterElem.value : 'All';
     let filteredData = [];
     
     if (filterValue === 'All') {
@@ -284,7 +280,7 @@ function filterTable() {
 }
 
 function renderTable(dataset) {
-    const tbody = document.getElementById('tableBody');
+    const tbody     = document.getElementById('tableBody');
     if(!tbody) return;
     tbody.innerHTML = '';
     const displayData = dataset || data;
@@ -338,7 +334,7 @@ function openAnalyzeModal(index) {
     const dateElem = document.getElementById('m-date');
     if (dateElem) dateElem.innerText = item.date || "N/A";
     
-    // 3. IMAGE LOGIC (The Hybrid Fix)
+    // 3. IMAGE LOGIC
     const imgElem = document.getElementById('m-photo');
     if (imgElem) {
         // Reset display first
@@ -350,8 +346,6 @@ function openAnalyzeModal(index) {
             // CHECK: Is it a Web Link (New Upload) or a Local File (Old Data)?
             if (item.img.includes("http")) {
                 // CASE A: It is a URL (from Ngrok). 
-                // Browsers hate loading Ngrok images on Localhost. 
-                // We strip the URL and force it to load from your internal server.
                 let filename = item.img.split("/").pop(); // Get "SIG-1234.jpg"
                 
                 // ?t=... forces the browser to ignore cache and load the new image
@@ -359,8 +353,7 @@ function openAnalyzeModal(index) {
                 
                 console.log("📸 Loading New Upload via Localhost:", imgElem.src);
             } else {
-                // CASE B: It is an OLD sample file (e.g., "Complaint Photoes/SIG-9021.jpg")
-                // We leave it exactly as is.
+                // CASE B: It is an OLD sample file
                 imgElem.src = item.img;
             }
         }
@@ -373,14 +366,13 @@ function openAnalyzeModal(index) {
     const rejectBtn = document.querySelector('.modal-action-btn.danger');
     if(rejectBtn) {
         // STEP A: COMPLETELY RESET THE BUTTON STATE
-        // This wakes it up if it was disabled by a previous "Solved" item
         rejectBtn.style.width = '100%'; 
         rejectBtn.style.opacity = '1';
         rejectBtn.style.cursor = 'pointer';
-        rejectBtn.disabled = false; // <--- This line is critical
-        rejectBtn.onclick = null;   // <--- clear old triggers
+        rejectBtn.disabled = false; //This line is critical
+        rejectBtn.onclick = null;  
 
-        // STEP B: Apply Logic based on status
+        // STEP B: based on status
         if (item.status === 'Solved') {
             rejectBtn.style.opacity = '0.5'; 
             rejectBtn.style.cursor = 'not-allowed';
@@ -394,7 +386,7 @@ function openAnalyzeModal(index) {
             rejectBtn.onclick = function() { alert("Complaint already marked as Rejected."); };
         } 
         else {
-            // STEP C: Default "Active" State
+            // STEP C: Default State
             rejectBtn.innerHTML = '<i class="ri-spam-line"></i> Reject';
             rejectBtn.onclick = function() { updateStatus('Rejected'); };
         }
@@ -406,14 +398,49 @@ function openAnalyzeModal(index) {
 
 function closeAnalyzeModal() { document.getElementById('analyzeModal').style.display = 'none'; }
 
-function updateStatus(action) {
+// WEBRTC REJECT FUNCTION (ONLY THIS PART IS MODIFIED)
+async function updateStatus(action) {
     if (currentItemIndex === null) return;
+    const item = data[currentItemIndex];
+
     if (action === 'Rejected') {
-        data[currentItemIndex].status = 'Rejected';
-        alert("⚠️ Complaint Marked as Spam.\n\n🔄 System Update: Caller flagged. AI model is retraining to filter this pattern.");
-        filterTable(); 
+        const reason = prompt("Enter Rejection Reason:", "Photo is unclear");
+        if (!reason) return;
+
+        alert("📞 Calling Virtual Citizen Phone (WebRTC)...");
+
+        try {
+            // CALL THE BACKEND API
+            const response = await fetch("http://localhost:5000/api/reject-complaint", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: item.id,
+                    reason: reason
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                data[currentItemIndex].status = "Rejected";
+                alert("✅ Complaint Rejected.\n🔔 The Citizen Page should be ringing!");
+                filterTable();
+                closeAnalyzeModal();
+            } else {
+                alert(" Call failed: " + result.error);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Backend Error. Ensure server.js is running.");
+        }
+    }
+    
+    if (action === "Solved") {
+        data[currentItemIndex].status = "Solved";
+        filterTable();
         closeAnalyzeModal();
-    } 
+    }
 }
 
 // --- 6. CHARTS ---
@@ -474,8 +501,8 @@ function renderNotifications() {
     const badge = document.getElementById('notifCount');
     if(!list) return;
 
-    list.innerHTML = ''; // Clear current list
-    badge.innerText = notifications.length; // Update badge count
+    list.innerHTML = ''; 
+    badge.innerText = notifications.length;
 
     notifications.forEach(n => {
         const item = `
@@ -497,8 +524,7 @@ function toggleNotifPanel() {
     panel.classList.toggle('active');
 }
 
-// --- 9. SIMULATE LIVE INCOMING NOTIFICATION ---
-// This runs 5 seconds after the page loads to show the "Live" effect
+// --- 9. SIMULATE LIVE NOTIFICATION ---
 setTimeout(() => {
     addNewNotification(
         "SIG-9021", 
@@ -510,22 +536,22 @@ setTimeout(() => {
 }, 5000);
 
 function addNewNotification(id, msg, dept, time, type) {
-    // Add to top of array
     notifications.unshift({ id, msg, dept, time, type });
     renderNotifications();
     
     // Play a subtle sound or visual cue (Optional)
     const btn = document.querySelector('.notif-toggle-btn');
-    btn.style.transform = "scale(1.2)";
-    setTimeout(() => btn.style.transform = "scale(1)", 200);
+    if (btn) {
+        btn.style.transform = "scale(1.2)";
+        setTimeout(() => btn.style.transform = "scale(1)", 200);
+    }
 }
 
 // Initial Render
 renderNotifications();
 
-
-// --- 9. REAL-TIME DATA SYNC (FINAL FIX: Updates table & photos automatically) ---
-
+// --- 9. REAL-TIME DATA SYNC ---
+// 🟢 UPDATED FETCH FUNCTION (Connects to Ngrok + Fixes Warning Page)
 async function fetchLiveComplaints() {
   try {
     // Fetch latest data from the backend
