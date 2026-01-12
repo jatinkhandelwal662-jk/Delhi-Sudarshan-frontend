@@ -555,7 +555,7 @@ renderNotifications();
 async function fetchLiveComplaints() {
   try {
     // Fetch latest data from the backend
-    const res = await fetch("https://delhi-sudarshan-backend.onrender.com/api/complaints");
+    const res = await fetch("https://delhi-sudarshan-backend.onrender.com/api/new-complaint");
     const serverData = await res.json();
 
     let needsRender = false;
@@ -610,4 +610,5 @@ async function fetchLiveComplaints() {
 
 // Keep the interval running
 setInterval(fetchLiveComplaints, 2000);
+
 
