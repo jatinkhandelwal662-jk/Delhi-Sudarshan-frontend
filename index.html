@@ -41,6 +41,14 @@
               <button class="nav-btn" onclick="openTab('reports')"><i class="ri-file-chart-line"></i> <span>Department Reports</span></button>
               <button class="nav-btn" onclick="openTab('officer')"><i class="ri-shield-user-line"></i> <span>Officer ID</span></button>
           </nav>
+          <div style="text-align: center; margin-top: 20px;">
+            <button class="lang-btn" onclick="toggleLanguage()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: black; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 80%;">
+                🇺🇸 EN / 🇮🇳 HI
+            </button>
+            <button onclick="window.print()" style="background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); margin: 10px;">
+                <i class="ri-file-pdf-line"></i> Generate Official Report
+            </button>
+          </div>
           <div class="status-box"><span class="status-dot"></span> System Online</div>
       </aside>
 
@@ -200,6 +208,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
