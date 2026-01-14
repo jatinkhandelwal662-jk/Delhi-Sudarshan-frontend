@@ -610,5 +610,96 @@ async function fetchLiveComplaints() {
 
 // Keep the interval running
 setInterval(fetchLiveComplaints, 2000);
+const translations = {
+    "Mission Control": "मिशन कंट्रोल",
+    "Live Feeds": "लाइव फीड",
+    "Department Reports": "विभाग रिपोर्ट",
+    "Officer ID": "अधिकारी आईडी",
+    "System Online": "सिस्टम ऑनलाइन",
+    "City Monitor": "शहर निगरानी",
+    "Real-time AI surveillance": "AI आधारित निगरानी",
+    "Total Reports": "कुल रिपोर्ट",
+    "Resolved": "हल किया गया",
+    "Pending": "लंबित",
+    "Complaint Frequency": "शिकायत आवृत्ति",
+    "Complaint's Record": "शिकायत रिकॉर्ड",
+    "Voice-to-Text Transmissions": "नागरिकों से वॉयस संदेश",
+    "Signal ID": "सिग्नल आईडी",
+    "Type": "प्रकार",
+    "Location": "स्थान",
+    "Status": "स्थिति",
+    "Action": "कार्रवाई",
+    "Department Performance": "विभाग प्रदर्शन",
+    "Top Performer": "शीर्ष प्रदर्शन",
+    "Fastest Action": "सबसे तेज कार्रवाई",
+    "Highest Load": "सर्वाधिक भार",
+    "Profile": "प्रोफाइल",
+    "Department": "विभाग",
+    "Region": "क्षेत्र",
+    "Contact": "संपर्क",
+    "Analysis": "विश्लेषण",
+    "Approve": "स्वीकृत",
+    "Reject": "अस्वीकृत",
+    "Live Incident Map": "लाइव घटना मानचित्र"
+};
+
+function toggleLanguage() {
+    isHindi = !isHindi;
+    const btn = document.querySelector('.lang-btn');
+    
+    // Update Button Text
+    if (btn) btn.innerText = isHindi ? "🇮🇳 HI / 🇺🇸 EN" : "🇺🇸 EN / 🇮🇳 HI";
+
+    // 2. Walk through every text node in the document
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+    );
+
+    let node;
+    while (node = walker.nextNode()) {
+        const text = node.nodeValue.trim();
+        if (!text) continue; // Skip empty space
+
+        if (isHindi) {
+            // ENGLISH TO HINDI
+            if (translations[text]) {
+                node.nodeValue = translations[text];
+            } else {
+                // Try partial match for complex sentences
+                for (const [eng, hin] of Object.entries(translations)) {
+                    if (node.nodeValue.includes(eng)) {
+                        node.nodeValue = node.nodeValue.replace(eng, hin);
+                    }
+                }
+            }
+        } else {
+            // HINDI TO ENGLISH (Reverse Lookup)
+            for (const [eng, hin] of Object.entries(translations)) {
+                if (node.nodeValue.includes(hin)) {
+                    node.nodeValue = node.nodeValue.replace(hin, eng);
+                }
+            }
+        }
+    }
+}
+document.getElementById("pdfBtn").addEventListener("click", () => {
+    // Force all views to show
+    document.querySelectorAll(".view").forEach(v => {
+        v.classList.add("force-print");
+    });
+
+    // Wait for layout
+    setTimeout(() => {
+        window.print();
+
+        // Restore normal view after print
+        document.querySelectorAll(".view").forEach(v => {
+            v.classList.remove("force-print");
+        });
+    }, 500);
+});
 
 
