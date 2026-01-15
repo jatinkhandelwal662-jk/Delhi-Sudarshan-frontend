@@ -154,10 +154,10 @@ let data = [
         desc: "Entire row of street lights off in R-Block."
     },
     { 
-        id: "SIG-9302", type: "Transformer Sparking", loc: "Okhla Phase 3", status: "Pending", date: "2026-01-01",
+        id: "SIG-9302", type: "No power", loc: "Okhla Phase 3", status: "Pending", date: "2026-01-01",
         phone: "+91 98711 22334", dept: "BSES Rajdhani", 
         img: "", 
-        desc: "Loud sounds and sparks coming from the roadside transformer."
+        desc: "No power in the area since 5 hours."
     },
     { 
         id: "SIG-9303", type: "Power Cut", loc: "Chhatarpur", status: "Solved", date: "2025-12-15",
@@ -917,6 +917,7 @@ function markClusterFailed(rowId, loc, count, ids) {
         addNewNotification("CORRUPTION-ALERT!", `Audit FAILED in ${loc}. Citizen denied resolution.`, "AI Auditor", "Just Now", "alert");
     }
 }
+
 
 
 
