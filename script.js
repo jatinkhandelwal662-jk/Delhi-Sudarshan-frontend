@@ -2,7 +2,6 @@
 
 // GLOBAL VARIABLE TO TRACK OPEN COMPLAINT
 let currentItemIndex = null;
-let isHindi = false;
 
 // --- 1. DATASETS ---
 let data = [
@@ -294,8 +293,7 @@ function filterTable() {
 function isCritical(item) {
     // Keywords that trigger an EMERGENCY response
     const dangerWords = [
-        "burst", "manhole", "open", "spark", "wire", "current", 
-        "fire", "accident", "collapse", "sewer overflow", "gas"
+        "burst", "manhole","spark","collapse"
     ];
     
     // Check both Type and Description
@@ -918,4 +916,5 @@ function markClusterFailed(rowId, loc, count, ids) {
         addNewNotification("CORRUPTION-ALERT!", `Audit FAILED in ${loc}. Citizen denied resolution.`, "AI Auditor", "Just Now", "alert");
     }
 }
+
 
