@@ -259,7 +259,7 @@ function removeLoader() {
 
 // --- 3. OVERDUE LOGIC ---
 function checkOverdue() {
-    const today = new Date("2025-12-31"); 
+    const today = new Date("2026-01-14"); 
     
     data.forEach(item => {
         if(item.date) {
@@ -917,6 +917,7 @@ function markClusterFailed(rowId, loc, count, ids) {
         addNewNotification("CORRUPTION-ALERT!", `Audit FAILED in ${loc}. Citizen denied resolution.`, "AI Auditor", "Just Now", "alert");
     }
 }
+
 
 
 
